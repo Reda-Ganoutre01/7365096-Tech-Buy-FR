@@ -1,4 +1,4 @@
-<section id="product-infos">
+<section id="product-infos" *ngIf="product">
   <div>
     <div class="product-slider">
       <div class="image-slider" #imgSlider>
@@ -14,10 +14,10 @@
       <div class="arrow-left" (click)="prev()">‹</div>
       <div class="arrow-right" (click)="next()">›</div>
     </div>
-    <div class="product-details">
-      <h1>{{ product.name }}</h1>
-      <p class="product-price">{{ product.price|number:'1.2-2':'fr' }} €</p>
-      <p class="mini-description"><span style="text-decoration: underline;">Référence : {{ product.reference }}</span><br>{{ product.shortDescription }}</p>
+  <div class="product-details">
+  <h1>{{ product.name }}</h1>
+  <p class="product-price">{{ product.price|number:'1.2-2':'fr' }} €</p>
+  <p class="mini-description"><span style="text-decoration: underline;">Référence : {{ product.reference }}</span><br>{{ product.shortDescription }}</p>
       <a href="#" class="product-description-link">Voir la description détaillée <img src="assets/see-more.png"
                                                                                       alt="Voir la description détaillée"/></a>
       <hr/>
@@ -27,7 +27,7 @@
     </div>
   </div>
 </section>
-<section id="product-description">
+<section id="product-description" *ngIf="product">
   <h2>Description</h2>
   <div [innerHTML]="product.description">
   </div>

@@ -13,7 +13,7 @@ import {CartService} from "../../services/cart.service";
   styleUrls: ['./product.component.scss']
 })
 export class ProductComponent implements OnInit, OnDestroy, AfterViewInit {
-  product!: Product;
+  product: Product | null = null;
   bestProducts: Product[] = [];
 
   @ViewChild('imgSlider') imgSlider!: ElementRef;
@@ -34,14 +34,16 @@ export class ProductComponent implements OnInit, OnDestroy, AfterViewInit {
           return ;
         }
         this.product = product as Product;
-        this.title.setTitle((product as Product).name + ' - Tech & Buy');
+        this.title.setTitle((this.product as Product).name + ' - Tech & Buy');
       });
     });
   }
 
   public addToCart() {
-    this.product.quantity = 1;
-    this.cart.addProductToCart(this.product);
+    if (!this.product) return;
+    // ensure quantity property exists
+    (this.product as any).quantity = 1;
+    this.cart.addProductToCart(this.product as Product);
     this.router.navigate(['/cart']);
   }
 

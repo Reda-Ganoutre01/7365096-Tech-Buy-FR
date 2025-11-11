@@ -6,4 +6,4 @@ nelmio_api_doc:
             version: 1.0.0
     areas: # to filter documented areas
         path_patterns:
-            - ^/(categories|products) # Accepts routes under /api except /api/doc
+            - ^/(categories|products|orders) # Accepts routes under /api except /api/doc

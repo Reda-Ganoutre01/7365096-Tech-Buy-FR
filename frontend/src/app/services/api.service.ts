@@ -40,6 +40,17 @@ export class ApiService {
     return this.doRequest('products/' + id).then(response => response.json()) as Promise<Product>;
   }
 
+  public createOrder(payload: any): Promise<Response> {
+    return fetch(this.API_URL + 'orders', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+        'Accept': 'application/json'
+      },
+      body: JSON.stringify(payload)
+    });
+  }
+
   private doRequest(url: string|URL, body: object|null = null): Promise<Response> {
     return fetch(this.API_URL + url, {
       method: body ? 'POST' : 'GET',
